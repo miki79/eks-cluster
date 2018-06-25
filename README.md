@@ -67,6 +67,10 @@ Add daemonset kube2iam and related permissions
 kubectl apply -f templates/kube2iam-ds.yml
 ```
 
+Please note:
+The IAM role assigned to the worker node has the permission to assume only roles with the name starting with eks\_
+To modify this restriction, change the [amazon-eks-vpc.yml](templates/amazon-eks-vpc.yml#L515)
+
 #### Test Kube2IAM
 
 To verify if kube2iam is working correctly, this script creates a new role named "eks_subrole", adds policy to read S3, creates a [test pod](kube2iam/test-pod.yml)
